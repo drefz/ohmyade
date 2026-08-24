@@ -107,15 +107,15 @@ sequenceDiagram
 
 The repository currently has a minimal Tauri 2 scaffold:
 
-| Area                    | Current state                                                                               |
-| ----------------------- | ------------------------------------------------------------------------------------------- |
-| Renderer                | Loads Vite at `http://localhost:5173` in development and `apps/web/dist` in production      |
-| Window                  | One resizable `800 × 600` main window                                                       |
-| Native code             | Starts Tauri and enables the log plugin only in debug builds                                |
-| Capabilities            | Main window has only `core:default`                                                         |
-| Packaging               | All Tauri bundle targets enabled with scaffold icons                                        |
-| Content security policy | `csp: null`; this is a known release blocker                                                |
-| API integration         | No endpoint configuration, credentials, discovery, sidecar, or lifecycle integration exists |
+| Area                    | Current state                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------- |
+| Renderer                | Loads Vite at `http://localhost:5173` in development and `apps/web/dist` in production              |
+| Window                  | One resizable `800 × 600` main window with a custom Windows/Linux frame and macOS title-bar overlay |
+| Native code             | Starts Tauri and enables the log plugin only in debug builds                                        |
+| Capabilities            | Main window has `core:default` plus four scoped window-control permissions                          |
+| Packaging               | All Tauri bundle targets enabled with scaffold icons                                                |
+| Content security policy | `csp: null`; this is a known release blocker                                                        |
+| API integration         | No endpoint configuration, credentials, discovery, sidecar, or lifecycle integration exists         |
 
 This baseline is scaffolding and does not satisfy the release requirements below.
 
@@ -123,14 +123,26 @@ This baseline is scaffolding and does not satisfy the release requirements below
 
 ### 6.1 Shared renderer and window
 
-| ID          | Requirement                                                                                                                                                                               |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DESK-FR-001 | The application MUST load the same production renderer built by `apps/web`; it MUST NOT contain a second renderer implementation.                                                         |
-| DESK-FR-002 | Core session workflows MUST remain functional through the API when all optional native capabilities are unavailable.                                                                      |
-| DESK-FR-003 | The main window MUST restore only validated, visible bounds and MUST recover safely when displays change or are removed.                                                                  |
-| DESK-FR-004 | Window close MUST detach the client and MUST NOT imply session close, run abort, terminal close, or API shutdown.                                                                         |
-| DESK-FR-005 | Application quit MAY stop a desktop-launched local API according to an explicit user setting, but MUST first request its graceful shutdown and MUST communicate active-work consequences. |
-| DESK-FR-006 | External links MUST open through an allowlisted safe mechanism rather than unrestricted WebView navigation.                                                                               |
+| ID          | Requirement                                                                                                                                                                                                 |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DESK-FR-001 | The application MUST load the same production renderer built by `apps/web`; it MUST NOT contain a second renderer implementation.                                                                           |
+| DESK-FR-002 | Core session workflows MUST remain functional through the API when all optional native capabilities are unavailable.                                                                                        |
+| DESK-FR-003 | The main window MUST restore only validated, visible bounds and MUST recover safely when displays change or are removed.                                                                                    |
+| DESK-FR-004 | Window close MUST detach the client and MUST NOT imply session close, run abort, terminal close, or API shutdown.                                                                                           |
+| DESK-FR-005 | Application quit MAY stop a desktop-launched local API according to an explicit user setting, but MUST first request its graceful shutdown and MUST communicate active-work consequences.                   |
+| DESK-FR-006 | External links MUST open through an allowlisted safe mechanism rather than unrestricted WebView navigation.                                                                                                 |
+| DESK-FR-007 | The main window MUST expose draggable header space and accessible window controls: renderer-owned controls with hidden decorations on Windows/Linux, and native controls in an overlaid title bar on macOS. |
+
+#### 6.1.1 Custom title bar capability
+
+- The custom title bar lets desktop users drag, minimize, maximize or restore, and close the main window from the shared application header.
+- It is supported by Tauri on Windows, macOS, and Linux; macOS uses its native overlaid traffic lights to retain system corners and shadows, Windows/Linux use renderer controls, and controls are omitted in ordinary browsers.
+- On Windows/Linux, the renderer exposes only feature detection and the semantic `minimizeDesktopWindow`, `toggleDesktopWindowMaximized`, and `closeDesktopWindow` adapter operations; macOS reserves header space for native controls.
+- The operations use Tauri's built-in window API for the current named window and accept no renderer-provided input.
+- The `main` window receives `core:window:allow-start-dragging` on every desktop platform; close, minimize, and maximize permissions are additionally scoped to Windows/Linux.
+- The capability handles no sensitive data and retains no state.
+- A failed operation leaves the window unchanged and is reported to renderer diagnostics; closing follows the normal application lifecycle.
+- Typecheck, web production build, Tauri capability validation, and platform interaction/accessibility smoke tests cover this integration; release signing behavior is unchanged.
 
 ### 6.2 API endpoint and connection
 

@@ -125,13 +125,14 @@ On narrow screens, the application MUST not shrink the full desktop panel matrix
 
 ### 6.3 Routes and URL state
 
-| ID         | Requirement                                                                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| WEB-FR-001 | A session MUST have a stable URL using the Oh My ADE controller/session route identity defined by the protocol.                             |
-| WEB-FR-002 | Refreshing a session URL MUST reload an authoritative snapshot and recover its live subscription when authorized.                           |
-| WEB-FR-003 | File, diff, or settings selection that users reasonably expect to share or restore SHOULD be represented in path or validated search state. |
-| WEB-FR-004 | Unknown, unavailable, forbidden, and incompatible resources MUST render distinct recovery states.                                           |
-| WEB-FR-005 | The renderer MUST preserve browser back/forward semantics and MUST NOT use native desktop navigation as a requirement.                      |
+| ID         | Requirement                                                                                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| WEB-FR-001 | A session MUST have a stable URL using the Oh My ADE controller/session route identity defined by the protocol.                                                         |
+| WEB-FR-002 | Refreshing a session URL MUST reload an authoritative snapshot and recover its live subscription when authorized.                                                       |
+| WEB-FR-003 | File, diff, or settings selection that users reasonably expect to share or restore SHOULD be represented in path or validated search state.                             |
+| WEB-FR-004 | Unknown, unavailable, forbidden, and incompatible resources MUST render distinct recovery states.                                                                       |
+| WEB-FR-005 | The renderer MUST preserve browser back/forward semantics and MUST NOT use native desktop navigation as a requirement.                                                  |
+| WEB-FR-006 | When hosted by Tauri without native decorations, the header MUST provide accessible window controls and a draggable region; browser rendering MUST omit those controls. |
 
 ## 7. Functional requirements
 
