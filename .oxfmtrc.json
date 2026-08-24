@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    ".agents",
+    "apps/web/src/routeTree.gen.ts",
+    "apps/web/src/components/shadcn/**"
+  ],
+  "trailingComma": "none",
+  "sortImports": true,
+  "sortTailwindcss": true
+}

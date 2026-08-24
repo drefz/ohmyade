@@ -1,0 +1,14 @@
+/* Theme overrides */
+:root {
+  --background: oklch(1 0 0);
+  --card: oklch(1 0 0);
+  --popover: oklch(1 0 0);
+  --sidebar: oklch(1 0 0);
+}
+
+.dark {
+  --background: oklch(0 0 0);
+  --card: oklch(0 0 0);
+  --popover: oklch(0 0 0);
+  --sidebar: oklch(0 0 0);
+}
