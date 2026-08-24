@@ -1,0 +1,22 @@
+{
+  "name": "ohmyade",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:web": "bun run --filter @ohmyade/web dev",
+    "build:web": "bun run --filter @ohmyade/web build",
+    "typecheck:web": "bun run --filter @ohmyade/web typecheck",
+    "fmt:check": "oxfmt --check",
+    "fmt": "oxfmt",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "oxfmt": "^0.64.0",
+    "oxlint": "^1.79.0"
+  }
+}

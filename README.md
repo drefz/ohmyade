@@ -1,2 +1,3 @@
 # ohmyade
-Oh My ADE
+
+Oh My ADE (Agentic Development Environment)
