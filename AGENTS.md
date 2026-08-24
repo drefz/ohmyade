@@ -1,11 +1,22 @@
 # AGENTS.md - Oh My ADE
 
-The current plan for this app can be found at `docs/plans/architecture.md`
+## Specifications
+
+Before planning or changing product behavior, system boundaries, shared interfaces, security, or deployment, read [the system specification](docs/spec/system.spec.md). Then read every specification for the area being changed:
+
+- [API specification](docs/spec/api.spec.md) for the backend, protocol, Pi integration, workspaces, terminals, or server operations
+- [Web specification](docs/spec/web.spec.md) for the shared React renderer and browser behavior
+- [Desktop specification](docs/spec/desktop.spec.md) for Tauri, native capabilities, packaging, or local API supervision
+
+Treat these specifications as the source of truth. Update every affected specification in the same change whenever requirements, architecture, behavior, interfaces, security constraints, quality targets, or the documented implementation baseline change. Keep cross-references and requirement IDs consistent, and use Mermaid for all diagrams. A refactor that preserves specified behavior does not require a specification change.
+
+Before completing system work, verify that the system specification and every affected area specification describe the resulting behavior.
 
 ## Rules
 
 ### General
 
+- This monorepo uses Bun as its package manager; use Bun for dependency installation, package scripts, and workspace operations
 - When adding imports to a file always prefer using route aliases over relative imports
 
 ### Rules for apps/web/
@@ -17,12 +28,3 @@ This project uses shadcn/ui for component primitives
 - Use the shadcn/ui skills when installing new primitive components or when using them in composite components
   - .agents/skills/shadcn
   - .agents/skills/migrate-radix-to-base
-
-### Rules for apps/api/
-
-This project uses hono as the application backend
-
-- Hono provides llm ready docs, check these before building a new feature in the api
-  - [Docs List](https://hono.dev/llms.txt)
-  - [Full Docs](https://hono.dev/llms-full.txt)
-  - [Tiny Docs](https://hono.dev/llms-small.txt)
