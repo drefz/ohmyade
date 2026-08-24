@@ -5,7 +5,9 @@
     "apps/*"
   ],
   "scripts": {
+    "dev:desktop": "bun run --filter @ohmyade/desktop dev",
     "dev:web": "bun run --filter @ohmyade/web dev",
+    "build:desktop": "bun run --filter @ohmyade/desktop build",
     "build:web": "bun run --filter @ohmyade/web build",
     "typecheck:web": "bun run --filter @ohmyade/web typecheck",
     "fmt:check": "oxfmt --check",
