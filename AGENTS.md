@@ -5,6 +5,7 @@
 ### General
 
 - When adding imports to a file always prefer using route aliases over relative imports
+- There linting rules enabled for this project, NEVER ignore rules, always fix them idiomatically
 
 ### Rules for apps/web/
 

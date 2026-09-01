@@ -1,6 +1,19 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [".agents", "**/web/src/routeTree.gen.ts", "**/web/src/components/shadcn/**"],
+  "ignorePatterns": [
+    ".agent/**",
+    ".agents/**",
+    ".claude/**",
+    ".codex/**",
+    ".continue/**",
+    ".cursor/**",
+    ".gemini/**",
+    ".opencode/**",
+    ".pi/**",
+    "tools/oxlint/anti-slop/**",
+    "**/web/src/routeTree.gen.ts",
+    "**/web/src/components/shadcn/**"
+  ],
   "trailingComma": "none",
   "sortImports": true,
   "sortTailwindcss": true
