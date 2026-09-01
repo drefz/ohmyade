@@ -1,7 +1,5 @@
 # AGENTS.md - Oh My ADE
 
-The current plan for this app can be found at `docs/plans/architecture.md`
-
 ## Rules
 
 ### General
