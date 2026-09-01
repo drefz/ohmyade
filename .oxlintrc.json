@@ -1,11 +1,7 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["typescript", "react", "unicorn", "oxc"],
-  "ignorePatterns": [
-    ".agents",
-    "apps/web/src/routeTree.gen.ts",
-    "apps/web/src/components/shadcn/**"
-  ],
+  "ignorePatterns": [".agents", "**/web/src/routeTree.gen.ts", "**/web/src/components/shadcn/**"],
   "categories": {
     "correctness": "error"
   },

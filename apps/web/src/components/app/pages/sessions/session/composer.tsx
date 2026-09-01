@@ -26,9 +26,9 @@ export default function SessionComposer() {
               contentEditable={
                 <ContentEditable
                   aria-placeholder="Ask anything..."
-                  className="max-h-48 min-h-20 scrollbar-none overflow-y-auto text-base wrap-break-word whitespace-pre-wrap outline-none"
+                  className="max-h-48 min-h-20 scrollbar-none overflow-y-auto text-sm wrap-break-word whitespace-pre-wrap outline-none"
                   placeholder={
-                    <div className="text-muted-foreground pointer-events-none absolute top-0 left-0 text-base">
+                    <div className="text-muted-foreground pointer-events-none absolute top-0 left-0 text-sm">
                       Ask anything...
                     </div>
                   }
